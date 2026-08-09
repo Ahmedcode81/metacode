@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   METACODE Restaurant Platform — Design Tokens & Global Styles
+   ============================================================ */
+:root {
+  /* METACODE palette */
+  --background: #f5f7fa;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary: #172b4d;
+  --secondary-hover: #1e3a5f;
+  --muted: #64748b;
+  --border: #e5e7eb;
+
+  /* Restaurant configurable brand (injected via JS per restaurant) */
+  --brand-primary: #2563eb;
+  --brand-accent: #6366f1;
+
+  --radius-base: 12px;
+  --radius-card: 16px;
+  --radius-card-lg: 20px;
+
+  --font-sans: 'Inter', 'Cairo', system-ui, sans-serif;
+  --font-heading: 'Playfair Display', 'Inter', 'Cairo', serif;
+  --font-arabic: 'Cairo', 'Inter', system-ui, sans-serif;
+
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Arabic / RTL */
+  [dir='rtl'] body,
+  body.rtl {
+    font-family: var(--font-arabic);
+  }
+  [dir='rtl'] .font-heading,
+  [dir='rtl'] h1,
+  [dir='rtl'] h2,
+  [dir='rtl'] h3,
+  [dir='rtl'] h4 {
+    font-family: var(--font-arabic);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--brand-primary) 25%, transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer components {
+  .container-rest {
+    @apply mx-auto w-full;
+    max-width: 1200px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-rest {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-rest {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-base px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300;
+    background: var(--brand-primary);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--brand-primary) 35%, transparent);
+  }
+  .btn-primary:hover {
+    background: var(--brand-primary-hover, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px color-mix(in srgb, var(--brand-primary) 40%, transparent);
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-base px-6 py-3.5 text-sm font-semibold transition-all duration-300;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+  }
+  .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-base px-6 py-3.5 text-sm font-semibold transition-all duration-300;
+    color: var(--brand-primary);
+    background: transparent;
+  }
+  .btn-ghost-primary:hover {
+    background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
+  }
+
+  /* Section heading */
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em];
+    color: var(--brand-primary);
+  }
+  .section-title {
+    @apply font-heading text-[2rem] leading-tight font-bold text-secondary;
+  }
+  [dir='rtl'] .section-title {
+    font-family: var(--font-arabic);
+  }
+  .section-sub {
+    @apply mt-4 max-w-2xl text-base leading-relaxed text-muted;
+  }
+
+  /* Hide scrollbar utility */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* GSAP reveal initial states */
+.reveal-mask {
+  overflow: hidden;
+}
+.reveal-inner {
+  will-change: transform;
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
