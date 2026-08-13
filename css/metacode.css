@@ -24,6 +24,10 @@
   .lp-product-showcase { grid-template-columns: 1fr 1fr; }
 }
 
+.lp-product-showcase + .lp-product-showcase {
+  margin-top: 40px;
+}
+
 .lp-product-visual {
   display: flex;
   justify-content: center;

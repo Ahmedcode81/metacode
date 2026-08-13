@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Try Meta Cashier — interactive browser demo of the point-of-sale register." />
+    <title>Meta Cashier — Live Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="demo-shell">
+      <header class="demo-header">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">MC</div>
+          <div>
+            <h1 data-i18n="title">Meta Cashier</h1>
+            <p data-i18n="subtitle">Interactive browser demo — sample data only</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <a class="btn btn-ghost" id="back-link" href="../index.html" data-i18n="backToMetacode">Back to METACODE</a>
+          <button type="button" class="btn btn-ghost" id="lang-toggle" aria-label="Switch language">العربية</button>
+          <a class="btn btn-primary" id="download-link" href="#" data-i18n="download">Download Windows app</a>
+        </div>
+      </header>
+
+      <div class="demo-banner" role="status">
+        <span data-i18n="banner">Demo mode: sales are not saved. Install the desktop app for full inventory, reports, and offline SQLite storage.</span>
+      </div>
+
+      <div class="status-bar" aria-label="Register status">
+        <div class="status-item"><span class="status-label" data-i18n="register">Register</span> <strong id="register-id">REG-01</strong></div>
+        <div class="status-item"><span class="status-label" data-i18n="cashier">Cashier</span> <strong id="cashier-name">Demo User</strong></div>
+        <div class="status-item"><span class="status-label" data-i18n="clock">Time</span> <strong id="clock">--:--</strong></div>
+        <div class="status-item"><span class="status-label" data-i18n="cartItems">Cart items</span> <strong id="cart-count">0</strong></div>
+        <div class="status-item"><span class="status-label" data-i18n="sessionSales">Session sales</span> <strong id="session-sales">0</strong></div>
+      </div>
+
+      <main class="demo-main">
+        <section class="panel panel-register" aria-label="Register">
+          <div class="toolbar">
+            <label class="field">
+              <span data-i18n="barcode">Barcode / SKU</span>
+              <input id="barcode-input" type="text" inputmode="numeric" autocomplete="off" placeholder="6291000123456" />
+            </label>
+            <label class="field">
+              <span data-i18n="search">Product search</span>
+              <input id="search-input" type="search" autocomplete="off" dir="auto" placeholder="" />
+            </label>
+            <button type="button" class="btn btn-outline" id="clear-cart" data-i18n="clear">Clear cart</button>
+          </div>
+
+          <div class="search-results" id="search-results" hidden></div>
+
+          <div class="catalog-section">
+            <div class="catalog-head">
+              <h2 data-i18n="catalog">Product catalog</h2>
+              <span class="catalog-count" id="catalog-count"></span>
+            </div>
+            <div class="category-tabs" id="category-tabs" role="tablist"></div>
+            <div class="product-grid" id="product-grid"></div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th data-i18n="colSku">SKU</th>
+                  <th data-i18n="colProduct">Product</th>
+                  <th data-i18n="colCategory">Category</th>
+                  <th class="num" data-i18n="colQty">Qty</th>
+                  <th class="num" data-i18n="colPrice">Price</th>
+                  <th class="num" data-i18n="colTotal">Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="cart-body">
+                <tr class="empty-row">
+                  <td colspan="7" data-i18n="emptyCart">Scan a barcode or search to add products.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="panel panel-summary" aria-label="Ticket summary">
+          <h2 data-i18n="summary">Ticket summary</h2>
+          <dl class="totals">
+            <div><dt data-i18n="lineCount">Line items</dt><dd id="line-count">0</dd></div>
+            <div><dt data-i18n="subtotal">Subtotal</dt><dd id="subtotal">0.00</dd></div>
+            <div><dt data-i18n="discount">Discount</dt><dd id="discount-amount">0.00</dd></div>
+            <div><dt data-i18n="tax">Tax (15%)</dt><dd id="tax">0.00</dd></div>
+            <div class="total-row"><dt data-i18n="total">Total</dt><dd id="total">0.00</dd></div>
+          </dl>
+
+          <fieldset class="payment-fieldset">
+            <legend data-i18n="paymentMethod">Payment method</legend>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="cash" checked />
+                <span data-i18n="payCash">Cash</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="card" />
+                <span data-i18n="payCard">Card</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span data-i18n="discountPct">Discount (%)</span>
+            <input id="discount-input" type="text" inputmode="decimal" autocomplete="off" value="0" />
+          </label>
+
+          <div id="cash-panel">
+            <label class="field">
+              <span data-i18n="cashTendered">Cash tendered</span>
+              <input id="cash-input" type="text" inputmode="decimal" autocomplete="off" value="0.00" />
+            </label>
+            <div class="quick-cash" id="quick-cash"></div>
+            <p class="change-line"><span data-i18n="change">Change</span>: <strong id="change">0.00</strong></p>
+          </div>
+
+          <p class="card-note" id="card-note" hidden data-i18n="cardNote">Card payment — exact amount will be charged.</p>
+
+          <button type="button" class="btn btn-primary btn-block" id="complete-sale" data-i18n="complete">Complete sale</button>
+
+          <section class="receipt-box" id="receipt-box" hidden>
+            <div class="receipt-head">
+              <h3 data-i18n="receipt">Receipt</h3>
+              <button type="button" class="btn btn-outline btn-sm" id="print-receipt" data-i18n="printReceipt">Print</button>
+            </div>
+            <pre id="receipt-text"></pre>
+          </section>
+
+          <section class="session-box" aria-label="Session summary">
+            <h3 data-i18n="sessionSummary">Session summary</h3>
+            <dl class="session-stats">
+              <div><dt data-i18n="sessionSales">Sales</dt><dd id="session-sales-side">0</dd></div>
+              <div><dt data-i18n="sessionRevenue">Revenue</dt><dd id="session-revenue">0.00</dd></div>
+              <div><dt data-i18n="lastReceipt">Last receipt</dt><dd id="last-receipt">—</dd></div>
+            </dl>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="demo-footer">
+        <p>© <span id="year"></span> Meta Cashier · Developed by Ahmed Osman Mohamed Elhassan</p>
+        <p class="hint" data-i18n="tryBarcode">Try barcode <code>6291000123456</code> or search <span dir="rtl">حليب</span></p>
+      </footer>
+    </div>
+
+    <script src="./demo.js" defer></script>
+  </body>
+</html>

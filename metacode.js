@@ -68,6 +68,20 @@
       restaurantFeature8: 'Contact Integration',
       restaurantLiveDemo: 'Live Demo',
       requestRestaurant: 'Request Restaurant Platform',
+      // Meta Cashier
+      cashierTagline: 'Point-of-Sale Register for Retail',
+      cashierDesc: 'A fast, bilingual POS system for shops and supermarkets. Scan barcodes, search products in English or Arabic, manage inventory, and run reports — with offline SQLite storage in the Windows desktop app.',
+      cashierFeature1: 'Barcode Scanning',
+      cashierFeature2: 'Bilingual Search (EN/AR)',
+      cashierFeature3: 'Cart & Checkout',
+      cashierFeature4: 'Tax & Change Calculation',
+      cashierFeature5: 'Receipt Preview',
+      cashierFeature6: 'Inventory Management',
+      cashierFeature7: 'Sales Reports',
+      cashierFeature8: 'Offline Desktop App',
+      cashierLiveDemo: 'Live Demo',
+      requestCashier: 'Request Meta Cashier',
+      tryCashierDemo: 'Try Meta Cashier Demo',
       // Why METACODE
       whyTitle: 'Why Choose METACODE?',
       whyDesc: 'We build software that delivers real business value and lasting impact.',
@@ -98,7 +112,7 @@
       step5Desc: 'Deploy the solution and start using it.',
       // Demo
       demoTitle: 'See It in Action',
-      demoDesc: 'Explore GymPro through our interactive demo and experience the system before making a decision.',
+      demoDesc: 'Explore our interactive demos and experience the systems before making a decision.',
       tryGymproDemo: 'Try GymPro Demo',
       demoCardTitle: 'Try the Demo',
       demoCardDesc: 'No registration required. Explore the full system with realistic demo data.',
@@ -184,6 +198,20 @@
       restaurantFeature8: 'تكامل الاتصال',
       restaurantLiveDemo: 'تجربة مباشرة',
       requestRestaurant: 'طلب منصة المطعم',
+      // Meta Cashier
+      cashierTagline: 'نظام نقاط البيع للمحلات',
+      cashierDesc: 'نظام كاشير سريع وثنائي اللغة للمحلات والسوبرماركت. امسح الباركود، ابحث بالعربية أو الإنجليزية، أدر المخزون والتقارير — مع تخزين SQLite دون اتصال في تطبيق Windows.',
+      cashierFeature1: 'مسح الباركود',
+      cashierFeature2: 'بحث ثنائي اللغة',
+      cashierFeature3: 'سلة ودفع',
+      cashierFeature4: 'ضريبة وحساب الباقي',
+      cashierFeature5: 'معاينة الفاتورة',
+      cashierFeature6: 'إدارة المخزون',
+      cashierFeature7: 'تقارير المبيعات',
+      cashierFeature8: 'تطبيق سطح مكتب دون اتصال',
+      cashierLiveDemo: 'تجربة مباشرة',
+      requestCashier: 'طلب Meta Cashier',
+      tryCashierDemo: 'جرب عرض Meta Cashier',
       // Why METACODE
       whyTitle: 'لماذا تختار METACODE؟',
       whyDesc: 'نحن نبني برمجيات توفر قيمة حقيقية للأعمال وتأثير دائم.',
@@ -214,7 +242,7 @@
       step5Desc: 'نشر الحل وابدأ في استخدامه.',
       // Demo
       demoTitle: 'شاهده يعمل',
-      demoDesc: 'استكشف GymPro من خلال العرض التفاعلي وجرب النظام قبل اتخاذ القرار.',
+      demoDesc: 'استكشف العروض التفاعلية وجرب الأنظمة قبل اتخاذ القرار.',
       tryGymproDemo: 'جرب عرض GymPro',
       demoCardTitle: 'جرب العرض',
       demoCardDesc: 'لا حاجة للتسجيل. استكشف النظام الكامل ببيانات تجريبية واقعية.',
@@ -314,6 +342,10 @@
   window.openRestaurantDemo = function () {
     // Open the restaurant platform demo
     window.open('http://localhost:5174', '_blank');
+  };
+
+  window.openCashierDemo = function () {
+    window.open('cashier_demo/index.html', '_blank');
   };
 
   // Apply on load
