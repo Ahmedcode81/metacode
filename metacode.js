@@ -335,13 +335,11 @@
   };
 
   window.openGymProDemo = function () {
-    // Open the local GymPro demo
-    window.open('demo/gympro/index.html#/dashboard', '_blank');
+    window.open('demo/gympro/demo/index.html#/dashboard', '_blank');
   };
 
   window.openRestaurantDemo = function () {
-    // Open the restaurant platform demo
-    window.open('http://localhost:5174', '_blank');
+    window.open('restaurant_demo/index.html', '_blank');
   };
 
   window.openCashierDemo = function () {
