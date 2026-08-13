@@ -335,6 +335,9 @@
   };
 
   window.openGymProDemo = function () {
+    try {
+      localStorage.setItem('gympro_demo_auto_login', 'true');
+    } catch (e) {}
     window.open('demo/gympro/demo/index.html#/dashboard', '_blank');
   };
 
