@@ -165,8 +165,7 @@
 
   // Navigation functions
   window.openDemo = function () {
-    // Open the restaurant platform demo
-    window.open('http://localhost:5174', '_blank');
+    window.open('../../restaurant_demo/index.html', '_blank');
   };
 
   window.goBack = function () {

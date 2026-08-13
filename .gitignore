@@ -8,6 +8,7 @@ demo_restraunt/.env.*.local
 # Build outputs
 dist/
 build/
+restaurant_demo/
 *.log
 
 # IDE

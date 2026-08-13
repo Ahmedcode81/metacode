@@ -287,8 +287,7 @@
   };
 
   window.openGymProDemo = function () {
-    // GymPro demo is now local at demo/gympro/
-    window.open('../../demo/gympro/index.html#/dashboard', '_blank');
+    window.open('../../demo/gympro/demo/index.html#/dashboard', '_blank');
   };
 
   // Apply on load
