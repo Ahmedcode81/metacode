@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+demo_restraunt/node_modules/
+demo_restraunt/dist/
+demo_restraunt/.env.local
+demo_restraunt/.env.*.local
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
